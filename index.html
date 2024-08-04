@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nebula</title>
 
@@ -17,82 +17,128 @@
     <meta name="twitter:title" content="Nebula">
     <meta name="twitter:description" content="Number One Script Execution GUI For Roblox">
     <meta name="twitter:image" content="https://cdn.discordapp.com/attachments/1269673763566518382/1269715474594136228/c31107b14d63736f13f1b8fefac047fa.png?ex=66b1122f&is=66afc0af&hm=08d8dba899666c1853f0f0b68d90f11f55fe7469a905576e429a54d4d0218d82&">
-
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background: linear-gradient(to right, black, magenta 50%, black); /* Gradient from black on the sides to magenta in the center */
-            color: white; /* Default text color */
-            height: 100vh; /* Full viewport height */
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 0;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            background: linear-gradient(to right, black, magenta, black);
+            opacity: 0; /* Initially hide the content */
+            transition: opacity 1s ease-in-out; /* Smooth transition for fade-in */
         }
-        .header {
-            margin: 20px 0; /* Space from the top */
-            text-align: center;
+        .intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: black;
+            z-index: 1000; /* Ensure it's above other content */
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
         }
-        .header img {
-            width: 300px; /* Set the width of the image to match the previous text size */
-            height: auto; /* Maintain aspect ratio */
-        }
-        .content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center; /* Center content vertically within the content area */
-            height: calc(100vh - 100px); /* Full height minus the height of the header */
-            width: 100%;
-            max-width: 600px; /* Optional: limit the width of the content */
-            text-align: center;
-            margin-top: -20px; /* Move content up to reduce space between heading and content */
-        }
-        p {
-            color: black; /* Black color for the additional text */
-            font-size: 3em; /* Larger font size for the additional text */
-            font-weight: bold; /* Bold text */
-            margin: 10px 0; /* Reduce space between text and button */
+        .intro-overlay.fade-out {
+            opacity: 0;
+            pointer-events: none; /* Allow clicks to pass through */
         }
         .button-container {
             display: flex;
-            gap: 20px; /* Space between buttons */
-            justify-content: center; /* Center buttons horizontally */
+            gap: 10px; /* Space between the buttons */
+            justify-content: center;
+            margin-top: 20px;
         }
         .button {
-            background-color: black; /* Black background color for the button */
-            color: magenta; /* Magenta text color for the button */
-            border: none;
-            padding: 15px 20px; /* Smaller horizontal padding */
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 20px; /* Font size for the button text */
+            padding: 10px 20px;
+            font-size: 16px;
             cursor: pointer;
+            border: none;
             border-radius: 5px;
+            color: magenta; /* Text color for both buttons */
+            background-color: black; /* Background color for both buttons */
+            font-weight: bold; /* Make button text bold */
+            display: flex;
+            align-items: center;
+            gap: 8px; /* Space between text and icon */
+            text-decoration: none; /* Remove underline from link */
+        }
+        .button img {
+            width: 20px; /* Adjust size of the icon */
+            height: 20px;
         }
         .button:hover {
-            background-color: #333; /* Darker color for hover effect */
+            opacity: 0.8; /* Slightly transparent on hover */
         }
-        .footer-text {
-            color: black; /* Black color for the footer text */
-            font-size: 1.5em; /* Adjust font size for footer text */
-            margin: 20px 0; /* Space around the footer text */
+        .button.unavailable {
+            cursor: not-allowed;
+            opacity: 0.5; /* Dim the button to indicate it is unclickable */
+        }
+        .container {
+            text-align: center;
+        }
+        .image {
+            max-width: 100%;
+            height: auto;
+            transition: transform 0.2s;
+            transform-style: preserve-3d;
+            margin-bottom: 20px; /* Add space below the image */
+        }
+        .text {
+            font-size: 24px; /* Adjust size as needed */
+            font-weight: bold;
+        }
+        .top-buttons {
+            position: absolute;
+            top: 20px; /* Position it at the very top */
+            left: 50%;
+            transform: translateX(-50%); /* Center it horizontally */
+            display: flex;
+            gap: 10px; /* Space between buttons */
+            z-index: 1100; /* Ensure it's above the overlay */
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <!-- Replace the source URL with your image URL -->
-        <img src="https://cdn.discordapp.com/attachments/1269673763566518382/1269718785942749234/pixelcut-export.png?ex=66b11544&is=66afc3c4&hm=54d7047cbdfbdc2e946ea1b94084972660e39fa6c3a0c41901ad0d47f0b28ed0&" alt="Nebula Image">
+    <div class="intro-overlay"></div>
+    <div class="top-buttons">
+        <a href="https://discord.gg/YWdafsv7gg" class="button" target="_blank">
+            <img src="https://cdn.discordapp.com/attachments/1236586647706140764/1269739774038507583/Discord.png?ex=66b128d0&is=66afd750&hm=850da588a62b607c56f5e9ee4baa7cd6f9c1883ff8329bd6b85cb4e942fefa3c&" alt="Discord Icon">
+            Discord
+        </a>
+        <a href="https://example.com" class="button" target="_blank">
+            About Us
+        </a>
     </div>
-    <div class="content">
-        <p>Number One Script Execution GUI For Roblox</p>
+    <div class="container">
+        <img src="https://cdn.discordapp.com/attachments/1269673763566518382/1269718785942749234/pixelcut-export.png?ex=66b11544&is=66afc3c4&hm=54d7047cbdfbdc2e946ea1b94084972660e39fa6c3a0c41901ad0d47f0b28ed0&" alt="3D Effect Image" class="image" id="image">
+        <p class="text">The best script execution GUI for Roblox</p>
         <div class="button-container">
-            <button class="button" onclick="window.location.href='https://www.nohello.net'">Download</button>
-            <button class="button" onclick="window.location.href='https://discord.gg/YWdafsv7gg'">Discord</button>
+            <button class="button unavailable">Download</button>
+            <a href="https://discord.gg/YWdafsv7gg" class="button" target="_blank">Discord</a>
         </div>
-        <p class="footer-text">Always 100% Undetected!</p>
     </div>
+
+    <script>
+        // Fade out the intro overlay after the page loads
+        window.addEventListener('load', () => {
+            const overlay = document.querySelector('.intro-overlay');
+            document.body.style.opacity = 1;
+            overlay.classList.add('fade-out');
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            const image = document.getElementById('image');
+            const rect = image.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            const rotateX = (y / rect.height) * 15;
+            const rotateY = -(x / rect.width) * 15;
+            image.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+    </script>
 </body>
 </html>
